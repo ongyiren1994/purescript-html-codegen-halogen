@@ -1,18 +1,18 @@
 module Html.Codegen.Halogen where
 
 import Prelude
-import Data.Array (filter, fromFoldable, elem)
+import Data.Array (elem, filter, fromFoldable, mapWithIndex, replicate)
 import Data.Either (Either(..))
 import Data.List (List)
 import Data.String (Pattern(..), joinWith, split)
 import Effect (Effect)
 import Effect.Console (log)
+import Effect.Exception (throw)
+import Effect.Unsafe (unsafePerformEffect)
 import Html.Parser (Element, HtmlAttribute(..), HtmlNode(..), parse)
 import Node.Encoding (Encoding(..))
-import Node.FS.Sync (readTextFile)
+import Node.FS.Sync (readTextFile, writeTextFile)
 import Node.Path (FilePath)
-import Effect.Unsafe (unsafePerformEffect)
-import Effect.Exception (throw)
 
 renderHalogenCodes :: FilePath -> Effect Unit
 renderHalogenCodes filePath = do
@@ -20,6 +20,30 @@ renderHalogenCodes filePath = do
   case parse content of
     Left error -> log $ show error
     Right htmlNodes -> log $ renderInitialNode htmlNodes
+
+renderHalogenCodesToFile :: FilePath -> Effect Unit
+renderHalogenCodesToFile filePath = do
+  content <- readTextFile UTF8 filePath
+  case parse content of
+    Left error -> log $ show error
+    Right htmlNodes -> writeTextFile UTF8 (filePath <> ".purs") $ renderInitialNode htmlNodes
+
+renderHalogenCodesWithIndent :: FilePath -> Effect Unit
+renderHalogenCodesWithIndent filePath = do
+  content <- readTextFile UTF8 filePath
+  case parse content of
+    Left error -> log $ show error
+    Right htmlNodes -> log $ joinWith "" $ mapWithIndex addPrefix $ split (Pattern ("] [")) $ renderInitialNode htmlNodes
+
+renderHalogenCodesWithIndentToFile :: FilePath -> Effect Unit
+renderHalogenCodesWithIndentToFile filePath = do
+  content <- readTextFile UTF8 filePath
+  case parse content of
+    Left error -> log $ show error
+    Right htmlNodes -> writeTextFile UTF8 (filePath <> ".purs") $ joinWith "" $ mapWithIndex addPrefix $ split (Pattern ("] [")) $ renderInitialNode htmlNodes
+
+addPrefix :: Int -> String -> String
+addPrefix index element = (if index == 0 then "" else "][\n") <> (joinWith "" (replicate index " ")) <> element
 
 renderInitialNode :: List HtmlNode -> String
 renderInitialNode htmlNodes = "HH.div_ [ " <> renderHtmlNodes htmlNodes <> " ]"

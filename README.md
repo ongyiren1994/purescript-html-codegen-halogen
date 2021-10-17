@@ -11,9 +11,9 @@ Type :? for help
 import Prelude
 
 > import Html.Codegen.Halogen
-> renderHalogenCodes "example.html"
-HH.div_ [ HH.h1_ [ HH.text "This is a heading" ], HH.p_ [ HH.text "This is a paragraph." ], HH.text "
-" ]
+> renderHalogenCodesWithIndent "examples/hello-world.min.html"
+HH.div_ [ HH.h1_ [ HH.text "Hello World" ], HH.a [ HP.href "https://www.purescript.org/" ][
+  HH.text "PureScript is awesome" ] ]
 
 >
 ```

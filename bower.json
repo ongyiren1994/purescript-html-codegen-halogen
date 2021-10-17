@@ -26,7 +26,7 @@
     "purescript-exceptions": "^5.0.0",
     "purescript-lists": "^6.0.1",
     "purescript-strings": "^5.0.0",
-    "purescript-html-parse-halogen": "https://github.com/rnons/purescript-html-parser-halogen.git#v1.1.0",
+    "purescript-html-parser-halogen": "https://github.com/rnons/purescript-html-parser-halogen.git#v1.1.0",
     "purescript-node-fs": "https://github.com/purescript-node/purescript-node-fs.git#v6.0.0",
     "purescript-web-html": "v3.0.1"
   },
