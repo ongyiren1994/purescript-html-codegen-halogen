@@ -1,0 +1,36 @@
+{
+  "name": "purescript-html-codegen-halogen",
+  "authors": [
+    "ongyiren1994 <ongyiren@outlook.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ongyiren1994/purescript-html-codegen-halogen.git"
+  },
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/ongyiren1994/purescript-html-codegen-halogen",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "purescript-prelude": "^5.0.0",
+    "purescript-console": "^5.0.0",
+    "purescript-either": "^5.0.0",
+    "purescript-arrays": "^6.0.1",
+    "purescript-exceptions": "^5.0.0",
+    "purescript-lists": "^6.0.1",
+    "purescript-strings": "^5.0.0",
+    "purescript-html-parse-halogen": "https://github.com/rnons/purescript-html-parser-halogen.git#v1.1.0",
+    "purescript-node-fs": "https://github.com/purescript-node/purescript-node-fs.git#v6.0.0",
+    "purescript-web-html": "v3.0.1"
+  },
+  "devDependencies": {
+    "purescript-psci-support": "^5.0.0"
+  }
+}
