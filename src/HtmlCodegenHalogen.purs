@@ -105,10 +105,10 @@ renderClassAttribute classes = case (filter ((/=) "") (split (Pattern " ") class
 data AttributeNameParam
   = ClassParam
   | FormMethodParam
-  -- | RefLabelParam
-  -- | MediaTypeParam
-  -- | TypeValueParam
-  -- | InputAcceptTypeParam
+  -- RefLabelParam
+  -- MediaTypeParam
+  -- TypeValueParam
+  -- InputAcceptTypeParam
   | PreloadValueParam
   | ScopeValueParam
   | StepValueParam
